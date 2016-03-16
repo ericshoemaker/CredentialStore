@@ -1,4 +1,4 @@
-﻿Function Get-CredStoreCredentials {
+
 #region Pinvoke
 #region Inline C#
 [String] $PsCredmanUtils = @"
@@ -408,6 +408,6 @@ Foreach ($pass in $CredStorePasswords){
 Foreach ($pass in $WebPasswords){
     
     If (($pass.Password.Trim()).Length -ne 0){$AllPasswords+=$pass}
-    }
+    
 
 $AllPasswords
