@@ -381,7 +381,7 @@ foreach($Cred in $Creds)
         $tempcredobj.Type=$Cred.Type
         $tempcredobj
         }
-}
+
 
 $CredStorePasswords=Get-CredStoreCredentials | Select Username, TargetName, CredentialBlob
 
