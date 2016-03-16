@@ -1,5 +1,5 @@
 
-    Function Get-CredStoreCredentials {
+Function Get-CredStoreCredentials {
 #region Pinvoke
 #region Inline C#
 [String] $PsCredmanUtils = @"
