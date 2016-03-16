@@ -394,7 +394,7 @@ If ($OSVersion -like "8.*" -or $OSVersion -like "10.*"){
         $VaultRecord.RetrievePassword()
         $WebPasswords+=$VaultRecord | Select Username, Resource, Password
         }
-    
+    }
 
 $AllPasswords=@()
 Foreach ($pass in $CredStorePasswords){
@@ -408,6 +408,6 @@ Foreach ($pass in $CredStorePasswords){
 Foreach ($pass in $WebPasswords){
     
     If (($pass.Password.Trim()).Length -ne 0){$AllPasswords+=$pass}
-} 
+}
 
 $AllPasswords
