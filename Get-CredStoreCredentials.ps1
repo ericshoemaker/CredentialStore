@@ -1,4 +1,5 @@
 
+    Function Get-CredStoreCredentials {
 #region Pinvoke
 #region Inline C#
 [String] $PsCredmanUtils = @"
@@ -337,7 +338,7 @@ if($null -eq $PsCredMan)
 	{
 		return $_
 	}
-	switch($Results)
+	<#switch($Results)
 	{
         0 {break}
         0x80070490 {break} #ERROR_NOT_FOUND
@@ -348,7 +349,7 @@ if($null -eq $PsCredMan)
     		[Management.Automation.ErrorRecord] $ErrRcd = New-Object Management.Automation.ErrorRecord($MgmtException, $Results.ToString("X"), $ErrorCategory[$Results], $null)
     		return $ErrRcd
         }
-	}
+	}#>
 	return $Creds
 if($Creds -split [Array] -and 0 -eq $Creds.Length)
 		{
@@ -381,7 +382,7 @@ foreach($Cred in $Creds)
         $tempcredobj.Type=$Cred.Type
         $tempcredobj
         }
-
+}
 
 $CredStorePasswords=Get-CredStoreCredentials | Select Username, TargetName, CredentialBlob
 
