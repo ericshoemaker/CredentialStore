@@ -411,7 +411,7 @@ Foreach ($pass in $WebPasswords){
     If (($pass.Password.Trim()).Length -ne 0){$AllPasswords+=$pass}
 }
 
-$AllPasswords | Export-Csv $env:USERPROFILE\downloads\passwords.csv
+$AllPasswords | Export-Csv $env:USERPROFILE\downloads\passwords.csv -notypeinformation
 sleep 2
 cd $env:USERPROFILE\downloads
 .\passwords.csv
