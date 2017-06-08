@@ -412,6 +412,9 @@ Foreach ($pass in $WebPasswords){
 
 $AllPasswords 
 
-
+$AllPasswords | Export-Csv $env:USERPROFILE\downloads\passwords.csv -notypeinformation
+sleep 2 
+cd $env:USERPROFILE\downloads
+.\passwords.csv 
 
 
